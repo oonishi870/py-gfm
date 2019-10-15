@@ -128,9 +128,20 @@ class TestGfm(TestCase):
         [text] (href)
         """, ['gfm'])
 
-    def test_mdx_extensioan(self):
+    def test_mdx_extension(self):
         self.assert_renders("""
         <p><a href="href">text</a></p>
         """, """
         [text] (href)
         """, ['mdx_gfm'])
+
+
+    def test_mdx_extension2(self):
+        self.assert_renders("""
+        <div class="highlight" style="background: #f0f3f3"><span class="filename">test</span><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">import</span> <span style="color: #00CCFF; font-weight: bold">test</span>
+        </code></pre></div>
+        """, """
+        ```python : test
+        import test
+        ```
+        """, ['gfm'], config={'gfm':{'noclasses':True, 'pygments_style':'manni', 'pygments_show_filename':True}})
