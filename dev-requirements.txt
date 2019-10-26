@@ -1,4 +1,0 @@
-codecov
-coverage
-coveralls
-unittest2
