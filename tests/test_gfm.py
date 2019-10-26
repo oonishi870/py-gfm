@@ -136,23 +136,23 @@ class TestGfm(TestCase):
         """, ['mdx_gfm'])
 
 
-    # def test_codeblock_filename(self):
+    def test_zzz_codeblock_filename(self):
 
             
-    #     test_text = """
-    #     ```python : test
-    #     import test
-    #     ```
-    #     """
-    #     extensions = ['gfm']
-    #     config={'gfm':{'noclasses':True, 'pygments_style':'manni', 'pygments_show_filename':True}}
+        test_text = """
+        ```python : test
+        import test
+        ```
+        """
+        extensions = ['gfm']
+        config={'gfm':{'noclasses':True, 'pygments_style':'manni', 'pygments_show_filename':True}}
 
-    #     if self.has_pygments:
-    #         self.assert_renders("""
-    #     <div class="highlight" style="background: #f0f3f3"><span class="filename">test</span><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">import</span> <span style="color: #00CCFF; font-weight: bold">test</span>
-    #     </code></pre></div>
-    #     """, test_text, extensions, config)
-    #     else:
-    #         self.assert_renders("""
-    #     <pre class="highlight"><code class="language-python">import test</code></pre>
-    #     """, test_text, extensions)
+        if self.has_pygments:
+            self.assert_renders("""
+        <div class="highlight" style="background: #f0f3f3"><span class="filename">test</span><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">import</span> <span style="color: #00CCFF; font-weight: bold">test</span>
+        </code></pre></div>
+        """, test_text, extensions, config)
+        else:
+            self.assert_renders("""
+        <pre class="highlight"><code class="language-python">import test</code></pre>
+        """, test_text, extensions)
