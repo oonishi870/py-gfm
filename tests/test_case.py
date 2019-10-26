@@ -19,7 +19,9 @@ class TestCase(unittest.TestCase):
         except ImportError:
             self.has_pygments = False
 
-    def assert_renders(self, expected, source, extensions):
+        
+
+    def assert_renders(self, expected, source, extensions, config={}):
         """Asserts that one markdown string renders as expected.
 
         Takes the expected result, the markdown source, and the extensions to
@@ -28,8 +30,10 @@ class TestCase(unittest.TestCase):
 
         expected = self.clean_multiline(expected)
         source = self.clean_multiline(source)
-        self.assertEqual(
-            expected, markdown.markdown(source, extensions=extensions))
+        # self.assertEqual(
+        #     expected, markdown.markdown(source, extensions=extensions))
+        md = markdown.markdown(source, extensions=extensions, extension_configs=config)
+        self.assertEqual(expected, md)
 
     def clean_multiline(self, text):
         """Cleans an indented multiline string.

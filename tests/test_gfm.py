@@ -7,7 +7,6 @@ from __future__ import unicode_literals
 
 from test_case import TestCase
 
-
 class TestGfm(TestCase):
     def test_fenced_code(self):
         test_text = """
@@ -18,7 +17,7 @@ class TestGfm(TestCase):
         extensions = ['gfm']
         if self.has_pygments:
             self.assert_renders("""
-        <div class="highlight"><pre><span></span>foo
+        <div class="highlight"><pre><span></span><span class="n">foo</span>
         </pre></div>
         """, test_text, extensions)
         else:
@@ -128,3 +127,52 @@ class TestGfm(TestCase):
         """, """
         [text] (href)
         """, ['gfm'])
+
+    def test_mdx_extension(self):
+        self.assert_renders("""
+        <p><a href="href">text</a></p>
+        """, """
+        [text] (href)
+        """, ['mdx_gfm'])
+
+
+    def test_zzz_codeblock_filename(self):
+
+            
+        test_text = """
+        ```python : test
+        import test
+        ```
+        """
+        extensions = ['gfm']
+        config={'gfm':{'noclasses':True, 'pygments_style':'manni', 'pygments_show_filename':True}}
+
+        if self.has_pygments:
+            self.assert_renders("""
+        <div class="highlight" style="background: #f0f3f3"><span class="filename">test</span><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">import</span> <span style="color: #00CCFF; font-weight: bold">test</span>
+        </code></pre></div>
+        """, test_text, extensions, config)
+        else:
+            self.assert_renders("""
+        <pre class="highlight"><code class="language-python">import test</code></pre>
+        """, test_text, extensions)
+
+    def test_zzz_codeblock_fiilename_nolang(self):
+
+        test_text = """
+        ``` : filename
+        import test
+        ```
+        """
+        extensions = ['gfm']
+        config={'gfm':{'noclasses':True, 'pygments_style':'manni', 'pygments_show_filename':True}}
+
+        if self.has_pygments:
+            self.assert_renders("""
+        <div class="highlight" style="background: #f0f3f3"><span class="filename">filename</span><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">import</span> <span style="color: #00CCFF; font-weight: bold">test</span>
+        </code></pre></div>
+        """, test_text, extensions, config)
+        else:
+            self.assert_renders("""
+        <pre class="highlight"><code>import test</code></pre>
+        """, test_text, extensions)
