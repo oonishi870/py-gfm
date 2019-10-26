@@ -175,5 +175,5 @@ class TestGfm(TestCase):
         """, test_text, extensions, config)
         else:
             self.assert_renders("""
-        <pre class="highlight"><code class="language-python">import test</code></pre>
+        <pre class="highlight"><code>import test</code></pre>
         """, test_text, extensions)
