@@ -35,6 +35,8 @@ try:
     from pygments.lexers import get_lexer_by_name, guess_lexer
     from pygments.formatters import get_formatter_by_name
     pygments = True
+    if not pygments:
+        raise ImportError()
 except ImportError:
     pygments = False
 
