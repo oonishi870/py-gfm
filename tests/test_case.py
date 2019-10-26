@@ -19,6 +19,8 @@ class TestCase(unittest.TestCase):
         except ImportError:
             self.has_pygments = False
 
+        
+
     def assert_renders(self, expected, source, extensions, config={}):
         """Asserts that one markdown string renders as expected.
 
